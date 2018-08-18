@@ -44,16 +44,19 @@ var Player = function() {//COMMENTS BELOW TAKEN FROM ENEMY class
 
 // Update the player's position, required method for game
 // need to update based on player input
-Player.prototype.update = function() {
-
-};
-
-//col(x) * 101, row(y) * 83
-Player.prototype.handleInput = function(key) {
-  console.log("Inside handleInput with key: " + key);
+Player.prototype.update = function(key) {
+  //console.log("Inside player's update function");
+  /*if (dimension == 'x')
+    this.x = this.x_coord * 101;
+  else if (dimension == 'y')
+    this.y = this.y_coord * 83;
+  else {
+    //console.log("Player update function called without X OR Y");
+  }*/
   if (key == 'left') {
     if (0 < this.x_coord ) {
       this.x_coord--;
+      //this.update('x');
       this.x = this.x_coord * 101;
       if (allEnemies.length % 3 == 0) {
         allEnemies.push(new Enemy(1,25));
@@ -64,6 +67,7 @@ Player.prototype.handleInput = function(key) {
   if (key == 'right') {
     if (this.x_coord < 4) {
       this.x_coord++;
+      //this.update('x');
       this.x = this.x_coord * 101;
       if (allEnemies.length % 2 == 1) {
         allEnemies.push(new Enemy(1,60));
@@ -74,6 +78,7 @@ Player.prototype.handleInput = function(key) {
   if (key == 'up') {
     if (0 < this.y_coord) {
       this.y_coord--;
+      //this.update('y');
       this.y = this.y_coord * 83;
       if (allEnemies.length % 2 == 0) {
         allEnemies.push(new Enemy(2,30));
@@ -81,7 +86,8 @@ Player.prototype.handleInput = function(key) {
     }
     if (this.y_coord == 0) {
       winCount++;
-      console.log("You reached the other side! Reset game! Wins = " + winCount + ", Losses = " + lossCount);
+      //console.log("You reached the other side! Reset game! Wins = " + winCount + ", Losses = " + lossCount);
+      //Engine.reset("Win");
       if ((winCount + lossCount) == 1) {//firstWin - add wincount and losscount to page
         const gameTracker = document.createElement('h1');
         gameTracker.textContent = "Wins: " + winCount + " , Losses: " + lossCount;
@@ -105,6 +111,7 @@ Player.prototype.handleInput = function(key) {
   if (key == 'down') {
     if (this.y_coord < 5) {
       this.y_coord++;
+      //this.update('y');
       this.y = this.y_coord * 83;
       if (allEnemies.length % 2 == 0) {
         allEnemies.push(new Enemy(3,80));
@@ -114,6 +121,13 @@ Player.prototype.handleInput = function(key) {
     return;
   }
   return;
+};
+
+//col(x) * 101, row(y) * 83
+Player.prototype.handleInput = function(key) {
+  //console.log("Inside handleInput with key: " + key);
+  return this.update(key);
+
 };
 
 // Draw the player on the screen, required method for game

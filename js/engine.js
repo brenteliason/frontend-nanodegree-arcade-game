@@ -97,8 +97,7 @@ var Engine = (function(global) {
             if (enemy.x > 500) {
               let indexToRemove = allEnemies.indexOf(enemy);
               allEnemies.splice(indexToRemove, 1);
-              console.log("Length of index after removal: " + allEnemies.length);
-              //enemy = null;
+              //console.log("Length of index after removal: " + allEnemies.length);
             }
         });
         player.update();
@@ -182,7 +181,7 @@ let resolvingCollision = false;//WHEN SET TO TRUE enginer will stop checking for
             //console.log("\tEnemy's position is: " + allEnemies[i].x + ", " + allEnemies[i].y);
             lossCount++;
             console.log("\tCollission! Reset game! Wins = " + winCount + ", Losses = " + lossCount);
-
+            reset("Loss");
             if ((winCount + lossCount) == 1) {//firstLoss - add wincount and losscount to page
               const gameTracker = document.createElement('h1');
               gameTracker.textContent = "Wins: " + winCount + " , Losses: " + lossCount;
@@ -211,8 +210,9 @@ let resolvingCollision = false;//WHEN SET TO TRUE enginer will stop checking for
      * handle game reset states - maybe a new game menu or a game over screen
      * those sorts of things. It's only called once by the init() method.
      */
-    function reset() {
+    function reset(message) {
         // noop
+        console.log("Inside engine reset function, due to" + message);
     }
 
     /* Go ahead and load all of the images we know we're going to need to
