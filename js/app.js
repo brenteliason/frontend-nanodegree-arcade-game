@@ -45,9 +45,7 @@ var Player = function() {//COMMENTS BELOW TAKEN FROM ENEMY class
 // Update the player's position, required method for game
 // need to update based on player input
 Player.prototype.update = function() {
-    // You should multiply any movement by the dt parameter
-    // which will ensure the game runs at the same speed for
-    // all computers.
+
 };
 
 //col(x) * 101, row(y) * 83
@@ -84,6 +82,18 @@ Player.prototype.handleInput = function(key) {
     if (this.y_coord == 0) {
       winCount++;
       console.log("You reached the other side! Reset game! Wins = " + winCount + ", Losses = " + lossCount);
+      if ((winCount + lossCount) == 1) {//firstWin - add wincount and losscount to page
+        const gameTracker = document.createElement('h1');
+        gameTracker.textContent = "Wins: " + winCount + " , Losses: " + lossCount;
+        console.log("New html is: " + gameTracker.textContent);
+        const body = document.querySelector('body');
+        body.appendChild(gameTracker);
+      }
+      else {
+        const gameTracker = document.querySelector('h1');
+        gameTracker.textContent = "Wins: " + winCount + " , Losses: " + lossCount;
+      }
+
       this.x_coord = 2;
       this.x = this.x_coord * 101;
       this.y_coord = 5;
