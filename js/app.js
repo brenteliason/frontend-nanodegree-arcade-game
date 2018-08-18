@@ -44,7 +44,7 @@ var Player = function() {//COMMENTS BELOW TAKEN FROM ENEMY class
 
 // Update the player's position, required method for game
 // need to update based on player input
-Player.prototype.update = function(dt) {
+Player.prototype.update = function() {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
@@ -82,8 +82,8 @@ Player.prototype.handleInput = function(key) {
       }
     }
     if (this.y_coord == 0) {
-      console.log("You win! You reached the other side!");
-      console.log("Reset game");
+      winCount++;
+      console.log("You reached the other side! Reset game! Wins = " + winCount + ", Losses = " + lossCount);
       this.x_coord = 2;
       this.x = this.x_coord * 101;
       this.y_coord = 5;
@@ -116,6 +116,8 @@ Player.prototype.render = function() {
 // Place the player object in a variable called player
 var allEnemies = [new Enemy(1,30), new Enemy(2,80), new Enemy(3,50)];
 const player = new Player();
+let winCount = 0;
+let lossCount = 0;
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.

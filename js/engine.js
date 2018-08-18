@@ -79,7 +79,7 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
-        //checkCollisions();
+        checkCollisions();
     }
 
     /* This is called by the update function and loops through all of the
@@ -166,13 +166,25 @@ var Engine = (function(global) {
 
 
     function checkCollisions() {
-      console.log("Inside check collisions function");
+      //console.log("Inside check collisions function");
       for (let i = 0; i < allEnemies.length; i++) {
-        console.log("Checking for collision between player and enemy#: " + i);
-        console.log("Player's position is: " + player.x + ", " + player.y);
-        console.log("Enemy's position is: " + allEnemies[i].x + ", " + allEnemies[i].y);
-        if (player.x == allEnemies[i].x && player.y == allEnemies[i].y) {
-          console.log("Collission! Reset game!");
+
+        //define variables to establish collision range
+        let minX = allEnemies[i].x - 50;
+        let maxX = allEnemies[i].x + 50;
+        //let minY = allEnemies[i].y - 0;
+        //let maxY = allEnemies[i].y + 0;
+        if ((minX <= player.x) && (player.x <= maxX) && (player.y == allEnemies[i].y)) { //}(minY <= player.y) && (player.y <= maxY)) {
+          console.log("Checking for collision between player and enemy#: " + i + "...");
+          console.log("\tPlayer's position is: " + player.x + ", " + player.y);
+          console.log("\tEnemy's position is: " + allEnemies[i].x + ", " + allEnemies[i].y);
+          lossCount++;
+          console.log("\tCollission! Reset game! Wins = " + winCount + ", Losses = " + lossCount);
+          player.x_coord = 2;
+          player.x = player.x_coord * 101;
+          player.y_coord = 5;
+          player.y = player.y_coord * 83;
+          allEnemies = [new Enemy(1,150), new Enemy(2,40), new Enemy(3,170), new Enemy(1,20), new Enemy (2,80)];
         }
 
       }
