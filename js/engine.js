@@ -173,23 +173,23 @@ let resolvingCollision = false;//WHEN SET TO TRUE enginer will stop checking for
         let maxX = allEnemies[i].x + 50;
         //let minY = allEnemies[i].y - 0;
         //let maxY = allEnemies[i].y + 0;
-        if ((minX <= player.x) && (player.x <= maxX) && (player.y == allEnemies[i].y) && resolvingCollision == false) { //}(minY <= player.y) && (player.y <= maxY)) {
+        if ((minX <= player.x) && (player.x <= maxX) && (player.y == allEnemies[i].y) && resolvingCollision == false) {
           resolvingCollision = true;//collision detected, engine will stop detecting collisions until game has been reset by the detected collision
           setTimeout(function () {//DELAYS restting game so user can see collision that caused reset
             //console.log("Checking for collision between player and enemy#: " + i + "...");
             //console.log("\tPlayer's position is: " + player.x + ", " + player.y);
             //console.log("\tEnemy's position is: " + allEnemies[i].x + ", " + allEnemies[i].y);
             lossCount++;
-            console.log("\tCollission! Reset game! Wins = " + winCount + ", Losses = " + lossCount);
-            reset("Loss");
+            //console.log("\tCollision! Reset game! Wins = " + winCount + ", Losses = " + lossCount);
+            //reset("Loss");
             if ((winCount + lossCount) == 1) {//firstLoss - add wincount and losscount to page
               const gameTracker = document.createElement('h1');
               gameTracker.textContent = "Wins: " + winCount + " , Losses: " + lossCount;
-              console.log("New html is: " + gameTracker.textContent);
+              //console.log("New html is: " + gameTracker.textContent);
               const body = document.querySelector('body');
               body.appendChild(gameTracker);
             }
-            else {
+            else {//not first win or loss, just update existing counts of wins and losses
               const gameTracker = document.querySelector('h1');
               gameTracker.textContent = "Wins: " + winCount + " , Losses: " + lossCount;
             }
@@ -198,7 +198,7 @@ let resolvingCollision = false;//WHEN SET TO TRUE enginer will stop checking for
             player.x = player.x_coord * 101;
             player.y_coord = 5;
             player.y = player.y_coord * 83;
-            allEnemies = [new Enemy(1,150), new Enemy(2,40), new Enemy(3,170), new Enemy(1,20), new Enemy (2,80)];
+            allEnemies = [new Enemy(1,150), new Enemy(2,40), new Enemy(3,170), new Enemy(1,20), new Enemy (2,80)];//adds new enemies for new game
             resolvingCollision = false;
           }, 100);
 
@@ -210,9 +210,9 @@ let resolvingCollision = false;//WHEN SET TO TRUE enginer will stop checking for
      * handle game reset states - maybe a new game menu or a game over screen
      * those sorts of things. It's only called once by the init() method.
      */
-    function reset(message) {
+    function reset() {
         // noop
-        console.log("Inside engine reset function, due to" + message);
+        //console.log("Inside engine reset function, due to" + message);
     }
 
     /* Go ahead and load all of the images we know we're going to need to
