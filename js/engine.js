@@ -9,7 +9,7 @@
  * drawn but that is not the case. What's really happening is the entire "scene"
  * is being drawn over and over, presenting the illusion of animation.
  *
- * This engine makes the canvas' context (ctx) object globally available to make 
+ * This engine makes the canvas' context (ctx) object globally available to make
  * writing app.js a little simpler to work with.
  */
 
@@ -79,7 +79,7 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
-        // checkCollisions();
+        //checkCollisions();
     }
 
     /* This is called by the update function and loops through all of the
@@ -91,7 +91,15 @@ var Engine = (function(global) {
      */
     function updateEntities(dt) {
         allEnemies.forEach(function(enemy) {
+            //check if enemy if offscreen and if so, remove it from array
             enemy.update(dt);
+            //console.log("Current enemy's x: " + enemy.x);
+            if (enemy.x > 500) {
+              let indexToRemove = allEnemies.indexOf(enemy);
+              allEnemies.splice(indexToRemove, 1);
+              console.log("Length of index after removal: " + allEnemies.length);
+              //enemy = null;
+            }
         });
         player.update();
     }
@@ -117,7 +125,7 @@ var Engine = (function(global) {
             numRows = 6,
             numCols = 5,
             row, col;
-        
+
         // Before drawing, clear existing canvas
         ctx.clearRect(0,0,canvas.width,canvas.height)
 
@@ -156,6 +164,19 @@ var Engine = (function(global) {
         player.render();
     }
 
+
+    function checkCollisions() {
+      console.log("Inside check collisions function");
+      for (let i = 0; i < allEnemies.length; i++) {
+        console.log("Checking for collision between player and enemy#: " + i);
+        console.log("Player's position is: " + player.x + ", " + player.y);
+        console.log("Enemy's position is: " + allEnemies[i].x + ", " + allEnemies[i].y);
+        if (player.x == allEnemies[i].x && player.y == allEnemies[i].y) {
+          console.log("Collission! Reset game!");
+        }
+
+      }
+    }
     /* This function does nothing but it could have been a good place to
      * handle game reset states - maybe a new game menu or a game over screen
      * those sorts of things. It's only called once by the init() method.
