@@ -9,7 +9,9 @@
 
 The arcade game (based on Frogger) is ready to play as soon as the page is loaded. Use the arrow keys to navigate the game. Every time you reach the water, you win and the game automatically restarts. Every time you collide with a bug, you lose and the game automatically restarts.
 
-You can relaunch the game entirely (resetting wins and losses back to 0) by refreshing the page.
+To start the game open index.html
+
+You can relaunch the game entirely (resetting wins and losses back to 0) by refreshing the page (index.html).
 
 ## Contributing
 

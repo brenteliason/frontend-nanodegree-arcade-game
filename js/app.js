@@ -1,3 +1,4 @@
+"use strict;"
 // Enemies our player must avoid
 var Enemy = function(row, speed) {//ROW MUST BE BETWEEN 1 and 3 to appear on stone squares; speed should be between 20 and 80
     // Variables applied to each of our instances go here,
@@ -58,6 +59,36 @@ Player.prototype.update = function(key) {//UPDATE's player position based on key
       this.x_coord--;
       //this.update('x');
       this.x = this.x_coord * 101;
+      for (let i = 0; i < allEnemies.length; i++) {
+        if ((this.y == allEnemies[i].y) && ((this.x + 101) > allEnemies[i].x) && (this.x < allEnemies[i].x)) {//CATCHES collisions that occur by moving left THROUGH an enemy
+          //console.log("Player moved left through enemy - collision");//reset code from checkCollisions stripped from setTimeout function to avoid double code,
+          //setTimeout(function () {//DELAYS restting game so user can see collision that caused reset
+            //console.log("Checking for collision between player and enemy#: " + i + "...");
+            //console.log("\tPlayer's position is: " + player.x + ", " + player.y);
+            //console.log("\tEnemy's position is: " + allEnemies[i].x + ", " + allEnemies[i].y);
+          lossCount++;
+            //console.log("\tCollision! Reset game! Wins = " + winCount + ", Losses = " + lossCount);
+            //reset("Loss");
+          if ((winCount + lossCount) == 1) {//firstLoss - add wincount and losscount to page
+            const gameTracker = document.createElement('h1');
+            gameTracker.textContent = "Wins: " + winCount + " , Losses: " + lossCount;
+            //console.log("New html is: " + gameTracker.textContent);
+            const body = document.querySelector('body');
+            body.appendChild(gameTracker);
+          }
+          else {//not first win or loss, just update existing counts of wins and losses
+            const gameTracker = document.querySelector('h1');
+            gameTracker.textContent = "Wins: " + winCount + " , Losses: " + lossCount;
+          }
+
+          player.x_coord = 2;
+          player.x = player.x_coord * 101;
+          player.y_coord = 5;
+          player.y = player.y_coord * 83;
+          allEnemies = [new Enemy(1,150), new Enemy(2,40), new Enemy(3,170), new Enemy(1,20), new Enemy (2,80)];//adds new enemies for new game
+          //}, 100);
+        }//END of if for detecting collisions caused in transit by player moving left THROUGH an enemy
+      }//END OF FOR LOOP going through enemies list
       if (allEnemies.length % 3 == 0 && allEnemies.length < 8) {//sometimes adds an enemy
         allEnemies.push(new Enemy(1,115));
       }
@@ -114,7 +145,7 @@ Player.prototype.update = function(key) {//UPDATE's player position based on key
       this.y_coord++;
       //this.update('y');
       this.y = this.y_coord * 83;
-      if (allEnemies.length % 2 == 0 && all.Enemies.length < 12) {//sometimes adds an enemy
+      if (allEnemies.length % 2 == 0 && allEnemies.length < 12) {//sometimes adds an enemy
         allEnemies.push(new Enemy(2,380));
       }
 

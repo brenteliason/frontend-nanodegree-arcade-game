@@ -163,7 +163,7 @@ var Engine = (function(global) {
         player.render();
     }
 
-let resolvingCollision = false;//WHEN SET TO TRUE enginer will stop checking for collisions to account for the time delay between collision detection and reset
+let resolvingCollision = false;//WHEN SET TO TRUE engine will stop checking for collisions to account for the time delay between collision detection and reset
     function checkCollisions() {
       //console.log("Inside check collisions function");
       for (let i = 0; i < allEnemies.length; i++) {
@@ -200,7 +200,7 @@ let resolvingCollision = false;//WHEN SET TO TRUE enginer will stop checking for
             player.y = player.y_coord * 83;
             allEnemies = [new Enemy(1,150), new Enemy(2,40), new Enemy(3,170), new Enemy(1,20), new Enemy (2,80)];//adds new enemies for new game
             resolvingCollision = false;
-          }, 100);
+          }, 50);
 
         }
 
