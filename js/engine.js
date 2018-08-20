@@ -169,11 +169,16 @@ let resolvingCollision = false;//WHEN SET TO TRUE engine will stop checking for 
       for (let i = 0; i < allEnemies.length; i++) {
 
         //define variables to establish collision range
-        let minX = allEnemies[i].x - 50;
-        let maxX = allEnemies[i].x + 50;
+        let minX = allEnemies[i].x - 75;
+        let maxX = allEnemies[i].x + 75;
+        //console.log("Inside checkCollisions, outside if-statement");
+        //console.log("\tPlayer.x: " + player.x + ", " + "Enemy.x: " + allEnemies[i].x);
         //let minY = allEnemies[i].y - 0;
         //let maxY = allEnemies[i].y + 0;
         if ((minX <= player.x) && (player.x <= maxX) && (player.y == allEnemies[i].y) && resolvingCollision == false) {
+          //console.log("Inside if statement inside checkCollisions");
+          //console.log("\tPlayer.x: " + player.x + ", " + "Enemy.x: " + allEnemies[i].x);
+          //console.log("\tReset code triggered");
           resolvingCollision = true;//collision detected, engine will stop detecting collisions until game has been reset by the detected collision
           setTimeout(function () {//DELAYS restting game so user can see collision that caused reset
             //console.log("Checking for collision between player and enemy#: " + i + "...");
@@ -199,8 +204,9 @@ let resolvingCollision = false;//WHEN SET TO TRUE engine will stop checking for 
             player.y_coord = 5;
             player.y = player.y_coord * 83;
             allEnemies = [new Enemy(1,150), new Enemy(2,40), new Enemy(3,170), new Enemy(1,20), new Enemy (2,80)];//adds new enemies for new game
+            //allEnemies = [new Enemy(1,1), new Enemy(2,1), new Enemy(3,1)];
             resolvingCollision = false;
-          }, 50);
+          }, 0);
 
         }
 

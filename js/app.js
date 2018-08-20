@@ -86,11 +86,13 @@ Player.prototype.update = function(key) {//UPDATE's player position based on key
           player.y_coord = 5;
           player.y = player.y_coord * 83;
           allEnemies = [new Enemy(1,150), new Enemy(2,40), new Enemy(3,170), new Enemy(1,20), new Enemy (2,80)];//adds new enemies for new game
+          //allEnemies = [new Enemy(1,1)];
           //}, 100);
         }//END of if for detecting collisions caused in transit by player moving left THROUGH an enemy
       }//END OF FOR LOOP going through enemies list
       if (allEnemies.length % 3 == 0 && allEnemies.length < 8) {//sometimes adds an enemy
         allEnemies.push(new Enemy(1,115));
+        //allEnemies.push(new Enemy(1,1));
       }
     }
     return;
@@ -102,6 +104,7 @@ Player.prototype.update = function(key) {//UPDATE's player position based on key
       this.x = this.x_coord * 101;
       if (allEnemies.length % 2 == 1 && allEnemies.length < 10) {//sometimes adds an enemy
         allEnemies.push(new Enemy(1,260));
+        //allEnemies.push(new Enemy(1,1));
       }
     }
     return;
@@ -113,6 +116,7 @@ Player.prototype.update = function(key) {//UPDATE's player position based on key
       this.y = this.y_coord * 83;
       if (allEnemies.length % 2 == 0 && allEnemies.length < 10) {//sometimes adds an enemy
         allEnemies.push(new Enemy(2,30));
+        //allEnemies.push(new Enemy(3,1));
       }
     }
     if (this.y_coord == 0) {//if player reaches water, triggers win code and resets game
@@ -137,6 +141,7 @@ Player.prototype.update = function(key) {//UPDATE's player position based on key
       this.y_coord = 5;
       this.y = this.y_coord * 83;
       allEnemies = [new Enemy(1,330), new Enemy(2,140), new Enemy(3,270), new Enemy(1,90), new Enemy (2,80)];//adds new enemies for new game
+      //allEnemies = [new Enemy(1,1), new Enemy(2,1), new Enemy(3,1)];
     }
     return;
   }
@@ -147,6 +152,7 @@ Player.prototype.update = function(key) {//UPDATE's player position based on key
       this.y = this.y_coord * 83;
       if (allEnemies.length % 2 == 0 && allEnemies.length < 12) {//sometimes adds an enemy
         allEnemies.push(new Enemy(2,380));
+        //allEnemies.push(2,1);
       }
 
     }
@@ -171,6 +177,7 @@ Player.prototype.render = function() {
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 var allEnemies = [new Enemy(1,290), new Enemy(2,80), new Enemy(3,170)];//initial enemies
+//var allEnemies = [new Enemy(1,1), new Enemy(2,1), new Enemy(3,1)];
 const player = new Player();
 let winCount = 0;
 let lossCount = 0;
